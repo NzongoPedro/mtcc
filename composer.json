@@ -1,0 +1,20 @@
+{
+
+    "description": "Descrição do seu projeto",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Esmeraldo",
+        "email": "seu-email@example.com"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Http\\": "http"
+      }
+    },
+    "require": {
+      
+    }
+  }
