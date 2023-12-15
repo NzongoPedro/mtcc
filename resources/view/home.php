@@ -1,3 +1,4 @@
+<?php check_login_off(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <?php $title_page = "Página incial "; ?>
@@ -18,7 +19,7 @@
                 <div id="hero_video">
                     <div>
                         <h3><strong>M-TCC</strong><br>UGS</h3>
-                        <p>Eam fastidii erroribus corrumpit cu, in quo epicuri recusabo, <strong>est vocent eleifend</strong> inimicus at.</p>
+                        <p>Uma biblioteca virtual de <strong>de consultas de tcc</strong> de simples acesso</p>
                     </div>
                     <a href="#first_section" class="btn_explore hidden_tablet"><i class="ti-arrow-down"></i></a>
                 </div>
@@ -30,8 +31,8 @@
                     <a href="#0" class="img_container">
                         <img src="img/grid_home_1.jpg" alt="">
                         <div class="short_info">
-                            <h3><strong>Latest Udema</strong>Courses</h3>
-                            <div><span class="btn_1 rounded">Read more</span></div>
+                            <h3><strong>Livros Digitais</strong>Biblioteca</h3>
+                            <div><span class="btn_1 rounded">Ler mais</span></div>
                         </div>
                     </a>
                 </li>
@@ -39,8 +40,8 @@
                     <a href="#0" class="img_container">
                         <img src="img/grid_home_1.jpg" alt="">
                         <div class="short_info">
-                            <h3><strong>Community</strong>Students</h3>
-                            <div><span class="btn_1 rounded">Read more</span></div>
+                            <h3><strong>Comunidade</strong>Estudantíl</h3>
+                            <div><span class="btn_1 rounded">Ler mais</span></div>
                         </div>
                     </a>
                 </li>
@@ -48,8 +49,8 @@
                     <a href="#0" class="img_container">
                         <img src="img/grid_home_1.jpg" alt="">
                         <div class="short_info">
-                            <h3><strong>Admission</strong>Apply</h3>
-                            <div><span class="btn_1 rounded">Submit</span></div>
+                            <h3><strong>Aprovações</strong>TCC</h3>
+                            <div><span class="btn_1 rounded">Enviar TCC</span></div>
                         </div>
                     </a>
                 </li>
@@ -59,8 +60,8 @@
             <div class="container-fluid margin_120_0" id="first_section">
                 <div class="main_title_2">
                     <span><em></em></span>
-                    <h2>Udema Popular Courses</h2>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                    <h2>TCC Mais consultados</h2>
+                    <p>Veja a baixo as monografias mais vistos e baixados na biblioteca.</p>
                 </div>
                 <div id="reccomended" class="owl-carousel owl-theme">
                     <div class="item">
@@ -68,139 +69,31 @@
                             <figure>
                                 <a href="#0" class="wish_bt"></a>
                                 <a href="course-detail.html">
-                                    <div class="preview"><span>Preview course</span></div><img src="img/course__list_1.jpg" class="img-fluid" alt="">
+                                    <div class="preview"><span>ver detalhes</span></div><img src="img/course__list_1.jpg" class="img-fluid" alt="">
                                 </a>
-                                <div class="price">$39</div>
+                                <div class="price">
+                                    <i class="icon-download-1"></i> 39
+                                </div>
 
                             </figure>
                             <div class="wrapper">
-                                <small>Category</small>
-                                <h3>Persius delenit has cu</h3>
-                                <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+                                <small>Autor</small>
+                                <h3>Saúde e sonho</h3>
+                                <p>Descrição breve do sistema em vindo da descrição </p>
                                 <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
                             </div>
                             <ul>
                                 <li><i class="icon_clock_alt"></i> 1h 30min</li>
                                 <li><i class="icon_like"></i> 890</li>
-                                <li><a href="course-detail.html">Enroll now</a></li>
+                                <li><a href="course-detail.html">baixar agora</a></li>
                             </ul>
                         </div>
                     </div>
-                    <!-- /item -->
-                    <div class="item">
-                        <div class="box_grid">
-                            <figure>
-                                <a href="#0" class="wish_bt"></a>
-                                <a href="course-detail.html"><img src="img/course__list_2.jpg" class="img-fluid" alt=""></a>
-                                <div class="price">$45</div>
-                                <div class="preview"><span>Preview course</span></div>
-                            </figure>
-                            <div class="wrapper">
-                                <small>Category</small>
-                                <h3>Persius delenit has cu</h3>
-                                <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                                <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
-                            </div>
-                            <ul>
-                                <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                                <li><i class="icon_like"></i> 890</li>
-                                <li><a href="course-detail.html">Enroll now</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /item -->
-                    <div class="item">
-                        <div class="box_grid">
-                            <figure>
-                                <a href="#0" class="wish_bt"></a>
-                                <a href="course-detail.html"><img src="img/course__list_3.jpg" class="img-fluid" alt=""></a>
-                                <div class="price">$54</div>
-                                <div class="preview"><span>Preview course</span></div>
-                            </figure>
-                            <div class="wrapper">
-                                <small>Category</small>
-                                <h3>Persius delenit has cu</h3>
-                                <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                                <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
-                            </div>
-                            <ul>
-                                <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                                <li><i class="icon_like"></i> 890</li>
-                                <li><a href="course-detail.html">Enroll now</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /item -->
-                    <div class="item">
-                        <div class="box_grid">
-                            <figure>
-                                <a href="#0" class="wish_bt"></a>
-                                <a href="course-detail.html"><img src="img/course__list_4.jpg" class="img-fluid" alt=""></a>
-                                <div class="price">$27</div>
-                                <div class="preview"><span>Preview course</span></div>
-                            </figure>
-                            <div class="wrapper">
-                                <small>Category</small>
-                                <h3>Persius delenit has cu</h3>
-                                <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                                <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
-                            </div>
-                            <ul>
-                                <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                                <li><i class="icon_like"></i> 890</li>
-                                <li><a href="course-detail.html">Enroll now</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /item -->
-                    <div class="item">
-                        <div class="box_grid">
-                            <figure>
-                                <a href="#0" class="wish_bt"></a>
-                                <a href="course-detail.html"><img src="img/course__list_5.jpg" class="img-fluid" alt=""></a>
-                                <div class="price">$35</div>
-                                <div class="preview"><span>Preview course</span></div>
-                            </figure>
-                            <div class="wrapper">
-                                <small>Category</small>
-                                <h3>Persius delenit has cu</h3>
-                                <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                                <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
-                            </div>
-                            <ul>
-                                <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                                <li><i class="icon_like"></i> 890</li>
-                                <li><a href="course-detail.html">Enroll now</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /item -->
-                    <div class="item">
-                        <div class="box_grid">
-                            <figure>
-                                <a href="#0" class="wish_bt"></a>
-                                <a href="course-detail.html"><img src="img/course__list_6.jpg" class="img-fluid" alt=""></a>
-                                <div class="price">$54</div>
-                                <div class="preview"><span>Preview course</span></div>
-                            </figure>
-                            <div class="wrapper">
-                                <small>Category</small>
-                                <h3>Persius delenit has cu</h3>
-                                <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                                <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
-                            </div>
-                            <ul>
-                                <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                                <li><i class="icon_like"></i> 890</li>
-                                <li><a href="course-detail.html">Enroll now</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /item -->
+
                 </div>
                 <!-- /carousel -->
                 <div class="container">
-                    <p class="btn_home_align"><a href="courses-grid.html" class="btn_1 rounded">View all courses</a></p>
+                    <p class="btn_home_align"><a href="courses-grid.html" class="btn_1 rounded">Ver mais na biblioteca</a></p>
                 </div>
                 <!-- /container -->
                 <hr>
@@ -210,8 +103,8 @@
             <div class="container margin_30_95">
                 <div class="main_title_2">
                     <span><em></em></span>
-                    <h2>Udema Categories Courses</h2>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                    <h2>Melhores avaliação</h2>
+                    <p>Veja os trabalhos com notas mais altas na UGS.</p>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
@@ -301,8 +194,8 @@
                 <div class="container margin_120_95">
                     <div class="main_title_2">
                         <span><em></em></span>
-                        <h2>News and Events</h2>
-                        <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                        <h2>Eventos e Novidades</h2>
+                        <p>Veja eventos futuros e passados (Defesas, outogras...)</p>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
@@ -363,7 +256,7 @@
                         <!-- /box_news -->
                     </div>
                     <!-- /row -->
-                    <p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">View all news</a></p>
+                    <p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">Ver tudo</a></p>
                 </div>
                 <!-- /container -->
             </div>
@@ -375,9 +268,9 @@
                         <div class="block-reveal">
                             <div class="block-vertical"></div>
                             <div class="box_1">
-                                <h3>Enjoy a great students community</h3>
-                                <p>Ius cu tamquam persequeris, eu veniam apeirian platonem qui, id aliquip voluptatibus pri. Ei mea primis ornatus disputationi. Menandri erroribus cu per, duo solet congue ut. </p>
-                                <a href="#0" class="btn_1 rounded">Read more</a>
+                                <h3>Faça a sua TCC ser mais lida</h3>
+                                <p>Quer deixar a sua monografia como uma das mais lidas, baixadas e consultadas? não perca mais tempo clique no botão abaixo e saiba mais sobre como fazer isso. </p>
+                                <a href="#0" class="btn_1 rounded">saiba mais</a>
                             </div>
                         </div>
                     </div>
@@ -387,67 +280,7 @@
         </main>
         <!-- /main -->
 
-        <footer>
-            <div class="container margin_120_95">
-                <div class="row justify-content-between">
-                    <div class="col-lg-5 col-md-12">
-                        <p><img src="img/logo.png" width="149" height="42" alt=""></p>
-                        <p>Mea nibh meis philosophia eu. Duis legimus efficiantur ea sea. Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu. Nihil facilisi indoctum an vix, ut delectus expetendis vis.</p>
-                        <div class="follow_us">
-                            <ul>
-                                <li>Follow us</li>
-                                <li><a href="#0"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#0"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#0"><i class="ti-google"></i></a></li>
-                                <li><a href="#0"><i class="ti-pinterest"></i></a></li>
-                                <li><a href="#0"><i class="ti-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 ml-lg-auto">
-                        <h5>Useful links</h5>
-                        <ul class="links">
-                            <li><a href="#0">Admission</a></li>
-                            <li><a href="#0">About</a></li>
-                            <li><a href="#0">Login</a></li>
-                            <li><a href="#0">Register</a></li>
-                            <li><a href="#0">News &amp; Events</a></li>
-                            <li><a href="#0">Contacts</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5>Contact with Us</h5>
-                        <ul class="contacts">
-                            <li><a href="tel://61280932400"><i class="ti-mobile"></i> + 61 23 8093 3400</a></li>
-                            <li><a href="mailto:info@udema.com"><i class="ti-email"></i> info@udema.com</a></li>
-                        </ul>
-                        <div id="newsletter">
-                            <h6>Newsletter</h6>
-                            <div id="message-newsletter"></div>
-                            <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
-                                <div class="form-group">
-                                    <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-                                    <input type="submit" value="Submit" id="submit-newsletter">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <hr>
-                <div class="row">
-                    <div class="col-md-8">
-                        <ul id="additional_links">
-                            <li><a href="#0">Terms and conditions</a></li>
-                            <li><a href="#0">Privacy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <div id="copy">© Udema</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php require "./resources/components/footer/footer.php"; ?>
         <!--/footer-->
     </div>
     <!-- page -->

@@ -1,4 +1,12 @@
-<?php require "./config.php"; ?>
+<?php
+require './vendor/autoload.php';
+require "./config.php";
+require './check_session.php';
+$id_estudante = '';
+if(isset($_SESSION['id_estudante'])){
+	$id_estudante = $_SESSION['id_estudante'];
+}
+?>
 <?php
 
 if (isset($_GET["view"])) {
