@@ -1,8 +1,7 @@
 <?php
 session_start();
-// Pega o DNS do servidor
 
-define('URL', 'http://' . $_SERVER["SERVER_NAME"] . '/UDEMA/udema');
+define('URL', 'http://' . $_SERVER['SERVER_NAME'] . '/mtcc/front/');
 define("CSS_STYLE", URL . '/css/style.css');
 define("CSS_CUSTOM", URL . '/css/custom.css');
 define("CSS_VENDOR", URL . '/css/vendors.css');

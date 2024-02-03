@@ -1,9 +1,12 @@
 <?php
 
 use Http\Model\Alunos as Aluno;
+use Http\Model\associacao;
+use Http\Model\mensagens;
 
 $estudante = Aluno::show($id_estudante);
-
+$id_tutor = associacao::show_id_tutor($estudante->idaluno);
+$mensagens = mensagens::show($id_estudante);
 ?>
 <header class="header menu_2">
 	<div id="preloader">
@@ -56,7 +59,7 @@ $estudante = Aluno::show($id_estudante);
 					</a>
 				</span>
 				<ul>
-					<li><a href="courses-grid.html">Perfil</a></li>
+					<li><a href="./?view=perfil#perfil">Perfil</a></li>
 					<li><a href="./?view=sair">sair</a></li>
 				</ul>
 			</li>

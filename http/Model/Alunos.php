@@ -105,10 +105,57 @@ class Alunos
 
     public static function show($id_estudante)
     {
-        $query = "SELECT *FROM alunos WHERE idaluno = '$id_estudante'";
+        $query = "SELECT *FROM alunos AS AL
+        INNER JOIN cursos AS CR ON AL.id_curso = CR.idcurso
+        WHERE idaluno = '$id_estudante'";
         $execute_query = self::connection()->query($query);
         $value_of_row = $execute_query->fetch();
         return $value_of_row;
+    }
+
+    public static function showAllStudents()
+    {
+        $query = "SELECT *FROM alunos AS AL
+        INNER JOIN cursos AS CR ON AL.id_curso = CR.idcurso
+        WHERE idaluno != 0";
+        $execute_query = self::connection()->query($query);
+        $value_of_row = $execute_query->fetchAll();
+        return $value_of_row;
+    }
+
+    public static function search($numero_estudante)
+    {
+        try {
+
+            $msgError = "";
+            $query = "SELECT idaluno, nome FROM alunos WHERE n_estudante = '$numero_estudante'";
+            $execute = self::connection()->query($query);
+
+
+            if (!is_numeric($numero_estudante)) {
+
+                $msgError = 'Somente número por favor!';
+            } else {
+
+                # verifica se o número ja existe
+                if (!$execute->rowCount() > 0) {
+
+                    $msgError = 'Estudante não encontrado!';
+                }
+            }
+
+
+            if (!$msgError == "") {
+
+                http_response_code(401);
+                return ['status' => 401, 'msgResponse' => $msgError];
+            }
+
+            http_response_code(200);
+            return ['status' => 200, 'dados' => $execute->fetch()];
+        } catch (PDOException $th) {
+            return ['status' => 401, 'msgResponse' => $execute->errorInfo()];
+        }
     }
 
     /* Fazer login Utente no sistema */
@@ -127,7 +174,9 @@ class Alunos
                 $data = self::connection()->query("SELECT * FROM alunos WHERE n_estudante = '$n_estudante' AND password = '$selectPassordHash'");
 
                 if ($data->rowCount() > 0) {
+                    
                     session_start();
+
                     $_SESSION['id_estudante'] = $data->fetch()->idaluno;
 
                     return ['status' => 200, 'msgResponse' => 'Sucesso. Aguarde...'];

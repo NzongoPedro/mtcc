@@ -6,11 +6,14 @@ const ajax = (acao, form_data, resposta) => {
     .then((res) => res.json())
     .then((response) => {
       if (response.status == 200) {
-        resposta.innerHTML = `<div class="alert alert-info border-0">${response.msgResponse}</div>`;
         if (acao == "login_aluno") {
+          resposta.innerHTML = `<div class="alert alert-info border-0">${response.msgResponse}</div>`;
+
           location.reload();
+        } else if (acao == "enviar-mensagem" || acao == 'enviar-tcc') {
+          window.location.reload();
         } else {
-          location.href = "./view=login";
+          window.location.href = "./view=login";
         }
       } else {
         resposta.innerHTML = `<div class="alert alert-danger border-0">${response.msgResponse}</div>`;

@@ -19,7 +19,7 @@ class Conexao
             $this->servername = 'localhost';
             $this->password = '';
             // tenta realizar a conexão
-            $this->ligar = new PDO("mysql:host=" . $this->servername . ";dbname=TCC", $this->username, $this->password);
+            $this->ligar = new PDO("mysql:host=" . $this->servername . ";dbname=msc_tcc", $this->username, $this->password);
             $this->ligar->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->ligar->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             $this->ligar->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
