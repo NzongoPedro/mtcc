@@ -354,7 +354,10 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                                                                 data-bs-title="Visualizar o arquivo"></a>
 
                                                             <a href="#!"
-                                                                class="btn btn-success bi bi-cloud-download-fill btn-sm rounded-circle"></a>
+                                                                class="btn btn-success bi bi-cloud-download-fill btn-sm rounded-circle"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-custom-class="custom-tooltip"
+                                                                data-bs-title="Baixar o arquivo"></a>
 
                                                         </td>
                                                     </tr>
