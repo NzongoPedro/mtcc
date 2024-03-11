@@ -6,8 +6,10 @@ function sweet(tipo, msg, title) {
   });
 }
 
+var baseUrl = window.location.origin + "/mtcc";
+
 const ajax = (acao, form_data, resposta) => {
-  fetch("../front/requests.php", {
+  fetch(`${baseUrl}/front/requests.php`, {
     method: "POST",
     body: form_data,
   })
@@ -20,7 +22,8 @@ const ajax = (acao, form_data, resposta) => {
           acao == "cadastrar-tutor" ||
           acao == "associar-tutor-aluno" ||
           acao == "enviar-mensagem" ||
-          acao == "login-docente"
+          acao == "login-docente" ||
+          acao == "enviar-tarefa"
         ) {
           sweet("SUCESSO", response.msgResponse, "Sucesso");
           setTimeout(() => {
