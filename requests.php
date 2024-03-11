@@ -2,11 +2,13 @@
 
 require './vendor/autoload.php';
 
-use Http\Controller\AlunosController;
+use Http\Model\Tcc;
 use Http\Model\admin;
 use Http\Model\Alunos;
+use Http\Model\Tarefas;
 use Http\Model\tutores;
 use Http\Model\mensagens;
+use Http\Controller\AlunosController;
 
 if (isset($_POST['acao'])) {
 
@@ -26,6 +28,9 @@ if (isset($_POST['acao'])) {
     $grau = htmlspecialchars(filter_input(INPUT_POST, 'grau', FILTER_SANITIZE_NUMBER_INT));
     $message = nl2br(htmlspecialchars(filter_input(INPUT_POST, 'mensagem')));
     $autor_mensagem = htmlspecialchars(filter_input(INPUT_POST, 'autor_mensagem'));
+    $arquivo_tcc = $_FILES['arquivo-tcc'];
+    $titulo_tarefa = htmlspecialchars(filter_input(INPUT_POST, 'titulo_tarefa'));
+    $desc_tarefa = nl2br(htmlspecialchars(filter_input(INPUT_POST, 'descricao_tarefa')));
 
     switch ($acao) {
         case 'cadastrar_aluno':
@@ -36,7 +41,7 @@ if (isset($_POST['acao'])) {
 
         case 'login_aluno':
 
-            print  json_encode(AlunosController::login($n_estudante, $password));
+            print json_encode(AlunosController::login($n_estudante, $password));
 
             break;
 
@@ -46,6 +51,10 @@ if (isset($_POST['acao'])) {
 
         case 'login-admin':
             print json_encode(admin::login($email, $password));
+            break;
+
+        case 'login-docente':
+            print json_encode(tutores::login($email, $password));
             break;
 
         case 'cadastrar-funcionario':
@@ -62,6 +71,16 @@ if (isset($_POST['acao'])) {
 
         case 'enviar-mensagem':
             print json_encode(mensagens::send($id_estudante, $id_tutor, $autor_mensagem, $message));
+            break;
+
+        case 'enviar-tcc':
+
+            print json_encode(Tcc::uploaTcc($id_estudante, $id_tutor, $arquivo_tcc));
+            break;
+
+        case 'enviar-tarefa':
+          
+            print json_encode(Tarefas::store($id_tutor, $id_estudante, $titulo_tarefa, $desc_tarefa));
             break;
 
 

@@ -13,7 +13,7 @@ $mensagens = mensagens::show($id_estudante);
 		<div data-loader="circle-side"></div>
 	</div><!-- /Preload -->
 	<div id="logo">
-		<a href="./"><img src="img/logo.png" width="149" height="42" alt=""></a>
+		<h5 class="text-light">MSTCC</h5>
 	</div>
 	<ul id="top_menu">
 		<?php
@@ -41,16 +41,16 @@ $mensagens = mensagens::show($id_estudante);
 			<li>
 				<span><a href="./">
 						<i class="icon-home"></i>
-						Home
+						Home-
 					</a></span>
 			</li>
 			<li>
 				<span>
-					<a href="./?view=defesas"><i class="icon-chat"></i> Chat</a>
+					<a href="./?view=perfil&ver-mensagens#mensagens"><i class="icon-chat"></i> Chat</a>
 				</span>
 			</li>
 			<li>
-				<span><a href="./?view=defesas"><i class="icon-tasks-1"></i> Tarefas</a></span>
+				<span><a href="./?view=perfil&ver-tarefas#tarefas"><i class="icon-tasks-1"></i> Tarefas</a></span>
 			</li>
 			<li><span><a href="./?view=defesas">Defesas</a></span></li>
 			<li><span><a href="./?view=sobre">Sobre</a></span></li>

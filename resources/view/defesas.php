@@ -30,7 +30,7 @@
             <div class="bg_color_1">
                 <div class="container margin_60_35">
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-12">
                             <div class="box_cart">
                                 <table class="table cart-list">
                                     <thead>
@@ -45,6 +45,11 @@
                                                 Tema
                                             </th>
                                             <th>
+                                                Data
+                                            </th>
+                                            <th>Hora</th>
+                                            <td>Sala</td>
+                                            <th>
                                                 ------
                                             </th>
                                         </tr>
@@ -58,10 +63,13 @@
                                                 <span class="item_cart">Persius delenit has cu</span>
                                             </td>
                                             <td>
-                                                0%
+                                                Engenharia
                                             </td>
+                                            <td>14-05-2024</td>
+                                            <td>20h00</td>
+                                            <td>Auditório</td>
                                             <td>
-                                                <strong>24,71$</strong>
+                                                <strong>Viva a vida</strong>
                                             </td>
                                             <td class="options">
                                                 <a href="#"><i class="icon-eye"></i> ver detalhes</a>
@@ -76,16 +84,6 @@
                         </div>
                         <!-- /col -->
 
-                        <aside class="col-lg-3" id="sidebar">
-                            <div class="box_detail">
-                                <div id="total_cart">
-                                    Total <span class="float-right">69.00$</span>
-                                </div>
-                                <div class="add_bottom_30">Lorem ipsum dolor sit amet, sed vide <strong>moderatius</strong> ad. Ex eius soleat sanctus pro, enim conceptam in quo, <a href="#0">brute convenire</a> appellantur an mei.</div>
-                                <a href="cart-2.html" class="btn_1 full-width">Checkout</a>
-                                <a href="courses-grid-sidebar.html" class="btn_1 full-width outline"><i class="icon-right"></i> Continue Shopping</a>
-                            </div>
-                        </aside>
                     </div>
                     <!-- /row -->
                 </div>

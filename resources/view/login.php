@@ -20,7 +20,7 @@
 	<div id="login">
 		<aside>
 			<figure>
-				<a href="./"><img src="img/logo.png" width="149" height="42" alt=""></a>
+				<h5 class="text-white">MSTCC</h5>
 			</figure>
 			<form autocomplete="off" class="form">
 
@@ -52,9 +52,12 @@
 
 				</div>
 				<button type="submit" class="btn_1 rounded full-width add_top_60">Entrar</button>
-				<div class="text-center add_top_10">Novo aqui? <strong><a href="./?view=cadastro">Cadastra-se</a></strong></div>
+				<div class="text-center add_top_10">Novo aqui? <strong><a
+							href="./?view=cadastro">Cadastra-se</a></strong></div>
 			</form>
-			<div class="copy">© <?= date('Y') ?> M-TCC</div>
+			<div class="copy">©
+				<?= date('Y') ?> M-TCC
+			</div>
 		</aside>
 	</div>
 	<!-- /login -->

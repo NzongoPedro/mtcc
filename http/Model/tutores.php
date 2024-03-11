@@ -14,14 +14,14 @@ class tutores
      */
     public static function connection()
     {
-        $ligar  = new  ligar();
+        $ligar = new ligar();
 
         $ligar = $ligar->ligar();
 
         return $ligar;
     }
 
-    public static function validation($grau, $nome, $email, $telefone): String
+    public static function validation($grau, $nome, $email, $telefone): string
     {
         $msgError = "";
 
@@ -68,7 +68,7 @@ class tutores
             $store->bindValue(2, $nome);
             $store->bindValue(3, $email);
             $store->bindValue(4, $telefone);
-            $store->bindValue(5,  password_hash($password, PASSWORD_DEFAULT));
+            $store->bindValue(5, password_hash($password, PASSWORD_DEFAULT));
 
             $msg_error = static::validation($grau, $nome, $email, $telefone);
             if (!$msg_error == "") {
@@ -112,7 +112,7 @@ class tutores
 
             $msgError = "";
 
-            $query = "INSERT INTO tutor_as_aluno (id_aluno,	id_docente,	id_admin) VALUES(?,?,?)";
+            $query = "INSERT INTO tutor_as_aluno (id_aluno,	id_docente,	id_docente) VALUES(?,?,?)";
 
             $save = static::connection()->prepare($query);
 
@@ -159,4 +159,41 @@ class tutores
             return ['status' => 401, 'msgResponse' => $th];
         }
     }
+
+    public static function login($email, $senha)
+    {
+
+        $selectEmail = self::connection()->query("SELECT docente_email FROM docentes WHERE docente_email = '" . $email . "'");
+
+        if ($selectEmail->rowCount() > 0) {
+
+            $selectPassordHash = self::connection()->query("SELECT docente_senha FROM docentes WHERE docente_email = '" . $email . "'")->fetch()->docente_senha;
+
+            // VERICA A SENHA SEGURA
+
+            if (password_verify($senha, $selectPassordHash)) {
+
+                $data = self::connection()->query("SELECT *FROM docentes WHERE docente_email = '$email' AND docente_senha = '$selectPassordHash'");
+
+                if ($data->rowCount() > 0) {
+
+                    session_start();
+
+                    $_SESSION['id_docente'] = $data->fetch()->iddocente;
+
+                    return ['status' => 200, 'msgResponse' => 'Sucesso. Aguarde...'];
+                } else {
+
+                    return ['status' => 401, 'msgResponse' => 'Verifique se os seus dados estão corretos!'];
+                }
+            } else {
+
+                return ['status' => 401, 'msgResponse' => 'palavra-passe incorreta!'];
+            }
+        } else {
+
+            return ['status' => 401, 'msgResponse' => 'Email incorreto!'];
+        }
+    }
+
 }
