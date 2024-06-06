@@ -23,9 +23,16 @@ const ajax = (acao, form_data, resposta) => {
           acao == "associar-tutor-aluno" ||
           acao == "enviar-mensagem" ||
           acao == "login-docente" ||
-          acao == "enviar-tarefa"
+          acao == "enviar-tarefa" ||
+          acao == "enviar-tcc-para-adm" ||
+          acao == "enviar-tcc" ||
+          acao == "enviar-tcc-para-biblioteca" ||
+          acao == "remover-tcc-da-biblioteca" ||
+          acao == "remover-defesa" ||
+          acao == "marcar-defesa" ||
+          acao == "remarcar-defesa"
         ) {
-          sweet("SUCESSO", response.msgResponse, "Sucesso");
+          sweet("success", response.msgResponse, "Sucesso");
           setTimeout(() => {
             window.location.reload();
           }, 2000);

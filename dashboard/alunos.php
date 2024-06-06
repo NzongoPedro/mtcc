@@ -57,31 +57,43 @@ require './allDatas.php';
                                         <th>Curso</th>
                                         <th>Status</th>
                                         <th>Designação</th>
-                                        <th>Ação</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
 
-                                    foreach ($alunos as $aluno) :
+                                    foreach ($alunos as $aluno):
                                         $status = '<span class="badge rounded-pill text-bg-danger">Inativa</span>';
                                         if ($aluno->estado_conta != 0) {
                                             $status = '<span class="badge rounded-pill text-bg-success">Activado</span>';
                                         }
-                                    ?>
+                                        ?>
                                         <tr>
-                                            <td><?= $aluno->idaluno ?></td>
-
-                                            <td><?= $aluno->nome ?></td>
-                                            <td><?= $aluno->n_estudante ?></td>
-                                            <td><?= $aluno->n_BI ?></td>
-                                            <td><?= $aluno->telefone ?></td>
-                                            <td><?= $aluno->curso_nome ?></td>
-                                            <td><?= $aluno->estado_conta ?></td>
-                                            <td><?= $status ?></td>
                                             <td>
-                                                <a href="!#" class="btn bi bi-plus-circle-fill text-dark" title="Mais detalhes"></a>
-                                                <a href="!#" class="btn bi bi-trash-fill text-danger" title="Remover"></a>
+                                                <?= $aluno->idaluno ?>
+                                            </td>
+
+                                            <td>
+                                                <?= $aluno->nome ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->n_estudante ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->n_BI ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->telefone ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->curso_nome ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->estado_conta ?>
+                                            </td>
+                                            <td>
+                                                <?= $status ?>
                                             </td>
                                         </tr>
 
@@ -100,7 +112,8 @@ require './allDatas.php';
 
     </main><!-- End #main -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
     <?php require './components/UI/modal/modalNewUser.php'; ?>
 
 

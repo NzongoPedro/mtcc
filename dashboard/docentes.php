@@ -99,7 +99,7 @@ require './allDatas.php';
                                                 <a href="!#" class="btn bi bi-share-fill text-dark" title="Atribuir aluno"
                                                     data-bs-toggle="modal" data-bs-target="#modalAssociacaoTutorAluno"
                                                     onclick="getIdTutor(<?= $tutor->iddocente ?>)"></a>
-                                                <a href="!#" class="btn bi bi-trash text-danger" title="Remover"></a>
+
                                             </td>
                                         </tr>
 

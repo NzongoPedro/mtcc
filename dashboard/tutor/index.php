@@ -1,4 +1,6 @@
 <?php
+
+use Http\Model\Alunos;
 use Http\Model\Tarefas;
 
 require '../config.php';
@@ -12,13 +14,15 @@ require '../../front/vendor/autoload.php';
 
 use Http\Model\mensagens;
 use Http\Model\Tcc;
+use Http\Model\tutores;
 
-$mensagens = mensagens::show_list(1);
+//$mensagens = mensagens::show_list(1);
 
 $alunos_as_tutors = Tarefas::escolharAlunoParaTarefa($_SESSION["id_docente"]);
 $tarefas = Tarefas::showTarefasASTutor($_SESSION["id_docente"]);
 $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
-//var_dump($tccs);
+$docente = tutores::showMe($_SESSION["id_docente"]);
+$tutorandos = Alunos::showWithTutor($_SESSION["id_docente"]);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -85,12 +89,16 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                     <br><br>
                     <div class="card shadow-none text-center mb-0">
                         <div class="d-flex justify-content-center">
-                            <img class="card-img-top img-fluid rounded-circle"
-                                src="http://localhost/mtcc/dashboard/assets/img/profile-img.jpg" alt="Title"
+                            <img class="card-img-top img-fluid rounded-circle img-thumbnail img-fluid shadow-sm"
+                                src="http://localhost/mtcc/dashboard/assets/img/profile.png" alt="Title"
                                 style="width: 100px ;height:100px;" />
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Esmeraldo Fernandes</h4>
+                            <div class="card-title mt-2">
+                                <h5>
+                                    <?= $docente->docente_nome ?>
+                                </h5>
+                            </div>
                         </div>
                     </div>
 
@@ -119,7 +127,8 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                     </ul>
 
                     <div class="alert rounded-0 fixed-bottom w-25">
-                        <a href="#!" class="nav-link text-danger alert alert-danger w-50 border-0">Terminar sessão</a>
+                        <a href="./sair.php" class="nav-link text-danger alert alert-danger w-50 border-0">Terminar
+                            sessão</a>
                     </div>
                 </div>
                 <!--/dMENU-->
@@ -138,66 +147,83 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
 
                                     <div class="mb-1 form-group mt-4 mb-4">
                                         <input type="search" class="form-control form-control-lg rounded-5"
-                                            placeholder="Pesquisar mensagens" />
+                                            placeholder="Pesquisar Aluno" />
                                     </div>
                                     <hr>
+                                    <!-- Hover added -->
+                                    <?php
+                                    foreach ($tutorandos as $tutorando): ?>
+
+                                        <div class="alert alert-light mb-2 border border-primary-subtle" role="alert">
+
+                                            <a href="./?page=mensagens&aluno=<?= $tutorando->id_aluno ?>&nome=   <?= $tutorando->nome ?>"
+                                                class="nav-link">
+                                                <b>
+                                                    <?= $tutorando->nome ?>
+                                                </b>
+                                            </a>
+
+                                        </div>
+
+                                    <?php endforeach ?>
 
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-6 w-50">
-                            <div class="card" style="height:80vh">
-                                <div class="card-header bg-dark text-light">
-                                    <h5>Nome Aluno</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="corpo-mensagem">
-                                        <?php
-                                        foreach ($mensagens as $mensagem): ?>
-                                            <div
-                                                class="mensagem d-block alert text-light <?= ($mensagem->autor != 'aluno') ? 'aluno bg-primary' : 'bg-dark'; ?>">
-                                                <?= $mensagem->conversa ?>
-                                            </div>
-                                        <?php endforeach ?>
+                            <?php
+                            if (isset($_GET['page']) && $_GET['page'] == 'mensagens' && isset($_GET['aluno'])):
+                                $nome_aluno = htmlspecialchars(filter_input(INPUT_GET, 'nome'));
+                                $id_aluno = htmlspecialchars(filter_input(INPUT_GET, 'aluno'));
+                                ?>
+
+                                <div class="card" style="height:80vh">
+                                    <div class="card-header bg-dark text-light">
+                                        <h5>
+                                            <?= $nome_aluno ?>
+                                        </h5>
                                     </div>
-                                </div>
-                                <div class="card-header bg-secondary">
-                                    <form action="#!" class="form">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <div class="mb-3">
-                                                        <textarea class="form-control form-control-lg rounded-5"
-                                                            name="mensagem"
-                                                            placeholder="Escreva aqui a mensagem..."></textarea>
+                                    <div class="card-body">
+                                        <div class="corpo-mensagem">
+                                            <?php
+                                            foreach (mensagens::show_list($id_aluno) as $mensagem): ?>
+                                                <div
+                                                    class="mensagem d-block alert text-light <?= ($mensagem->autor != 'aluno') ? 'aluno bg-primary' : 'bg-dark'; ?>">
+                                                    <?= $mensagem->conversa ?>
+                                                </div>
+                                            <?php endforeach ?>
+                                        </div>
+                                    </div>
+                                    <div class="card-header bg-secondary">
+                                        <form action="#!" class="form">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <div class="mb-3">
+                                                            <textarea class="form-control form-control-lg rounded-5"
+                                                                name="mensagem"
+                                                                placeholder="Escreva aqui a mensagem..."></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <input type="submit"
+                                                            class="btn btn-lg btn-primary rounded-2 p-3 w-100 mt-2"
+                                                            value="Enviar">
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
-                                                    <input type="submit"
-                                                        class="btn btn-lg btn-primary rounded-2 p-3 w-100 mt-2"
-                                                        value="Enviar">
-                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="hidden" name="id_aluno" value="1">
-                                        <input type="hidden" name="id_tutor" value="1">
-                                        <input type="hidden" name="autor_mensagem" value="tutor">
-                                        <input type="hidden" name="acao" value="enviar-mensagem">
-                                    </form>
+                                            <input type="hidden" name="id_aluno" value="<?= $id_aluno ?>">
+                                            <input type="hidden" name="id_tutor" value="<?= $_SESSION["id_docente"] ?>">
+                                            <input type="hidden" name="autor_mensagem" value="tutor">
+                                            <input type="hidden" name="acao" value="enviar-mensagem">
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card shadow-sm">
-                                <div class="card-header bg-dark ">
-                                    <h5 class="text-white"> Arquivos TCC</h5>
-                                </div>
-                                <div class="card-body">
 
-
-                                </div>
-                            </div>
+                            <?php endif ?>
                         </div>
+
                     </div>
                 <?php endif ?>
 
@@ -325,6 +351,7 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                                                     <th scope="col">Tutor</th>
                                                     <th scope="col">Data/Envio</th>
                                                     <th scope="col">Data/Atualização</th>
+                                                    <th>Tipo/ficheiro</th>
                                                     <th scope="col">Ação</th>
                                                 </tr>
                                             </thead>
@@ -347,17 +374,33 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                                                         <td>
                                                             <?= $tcc->updated_at ?>
                                                         </td>
+                                                        <td class="text-center">
+                                                            <span class="badge badge-pill bg-danger text-center">PDF</span>
+                                                        </td>
                                                         <td>
+
                                                             <a href="#!" class="btn btn-primary bi bi-eye btn-sm rounded-circle"
+                                                                data-bs-toggle="modal" data-bs-target="#tccModal"
+                                                                data-bs-tcc="<?= '../../front/' . $tcc->tcc_arquivo ?>"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                                 data-bs-custom-class="custom-tooltip"
-                                                                data-bs-title="Visualizar o arquivo"></a>
+                                                                data-bs-title="Ver o documento de TCC"
+                                                                title="ver o documento TCC"></a>
 
-                                                            <a href="#!"
+                                                            <a href="../../front/<?= $tcc->tcc_arquivo ?>"
+                                                                download="TCC- <?= $tcc->nome ?>"
                                                                 class="btn btn-success bi bi-cloud-download-fill btn-sm rounded-circle"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                                 data-bs-custom-class="custom-tooltip"
                                                                 data-bs-title="Baixar o arquivo"></a>
+
+                                                            <a href="./?page=send-tcc&id-resivao=<?= $tcc->idtcc_revisao ?>&curso=<?= $tcc->id_curso ?>&id-aluno=<?= $tcc->idaluno ?>"
+                                                                class="btn btn-dark bi bi-arrow-left-circle-fill btn-sm rounded-circle"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-custom-class="custom-tooltip"
+                                                                data-bs-title="Enviar para a Administração"></a>
+
+
 
                                                         </td>
                                                     </tr>
@@ -375,12 +418,150 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                 <?php endif ?>
 
                 <!-- END TCC -->
+
+                <!-- Send TCC to admin --->
+
+                <?php
+                if (isset($_GET['page']) && $_GET['page'] == 'send-tcc'):
+                    $curso = $_GET['curso'];
+                    $id_tcc_revisao = $_GET['id-resivao'];
+                    $id_aluno = $_GET['id-aluno'];
+                    ?>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card w-75">
+                            <div class="card-body">
+                                <div class="card-title mt-2">
+                                    <h5>Enviar TCC para a Admnistração</h5>
+                                </div>
+                                <hr>
+                                <form action="" class="form-post form">
+                                    <div class="card-text">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" name="titulo_tarefa" id="formId1"
+                                                placeholder="Escreva aqui o tema..." required />
+                                            <label for="formId1">Tema do Projeto</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control h-75" name="descricao_tarefa" id="formId2"
+                                                row="50" col="50" placeholder="Uma breve descrição do projeto."
+                                                required></textarea>
+                                            <label for="formId2">Descrição do projeto</label>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="id_curso" value="<?= $curso ?>">
+                                    <input type="hidden" name="id_aluno" value="<?= $id_aluno ?>">
+                                    <input type="hidden" name="id_tcc" value="<?= $id_tcc_revisao ?>">
+                                    <input type="hidden" name="acao" value="enviar-tcc-para-adm">
+
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn  btn-lg btn-primary w-100 rounded-5"
+                                            value="ENVIAR">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <?php endif ?>
+
+                <?php
+                if (isset($_GET['page']) && $_GET['page'] == 'tutorandos'): ?>
+                <div class="card mt-5">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Dados tabelados</h5>
+                        <p>Localize Alunos</p>
+
+                        <!-- Table with stripped rows -->
+                            <table class="table datatable table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><b>N</b>ome</th>
+                                        <th>Nº estudante.</th>
+                                        <th>Nº B.I</th>
+                                        <th>Telefone</th>
+                                        <th>Curso</th>
+                                        <th>Status</th>
+                                        <th>Designação</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+                                    foreach ($tutorandos as $aluno):
+                                        $status = '<span class="badge rounded-pill text-bg-danger">Inativa</span>';
+                                        if ($aluno->estado_conta != 0) {
+                                            $status = '<span class="badge rounded-pill text-bg-success">Activado</span>';
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?= $aluno->idaluno ?>
+                                            </td>
+
+                                            <td>
+                                                <?= $aluno->nome ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->n_estudante ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->n_BI ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->telefone ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->curso_nome ?>
+                                            </td>
+                                            <td>
+                                                <?= $aluno->estado_conta ?>
+                                            </td>
+                                            <td>
+                                                <?= $status ?>
+                                            </td>
+                                        </tr>
+
+                                    <?php endforeach ?>
+
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+                    </div>
+                <?php endif ?>
+
+                <!--End send-->
             </div>
         </div>
 
     </section>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="tccModal" tabindex="-1" aria-labelledby="tccModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tccModalLabel">tcc de Pagamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="tccFrame" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Vendor JS Files -->
     <script src="<?= URL ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -410,6 +591,16 @@ $tccs = Tcc::showTccASTutor($_SESSION["id_docente"]);
                 document.querySelector('.status').innerHTML = `status: a <span class="badge badge-pill bg-primary">RETIFICADO</span>`
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var tccModal = document.getElementById('tccModal');
+            tccModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget; // Botão que acionou o modal
+                var tccUrl = button.getAttribute('data-bs-tcc'); // Extrai informação dos atributos data-bs-tcc
+                var modalBody = tccModal.querySelector('.modal-body');
+                modalBody.innerHTML = '<iframe id="tccFrame" src="' + tccUrl + '" style="width: 100%; height: 80vh;" frameborder="0"></iframe>';
+            });
+        });
     </script>
 
 </body>
